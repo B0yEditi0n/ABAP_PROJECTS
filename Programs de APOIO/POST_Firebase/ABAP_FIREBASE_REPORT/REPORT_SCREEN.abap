@@ -1,0 +1,12 @@
+SELECTION-SCREEN: BEGIN OF BLOCK BLOCK_01.
+  " Opção de API
+  PARAMETERS: p_bt_get RADIOBUTTON GROUP rAPI DEFAULT 'X',
+              p_bt_pos RADIOBUTTON GROUP rAPI,
+              p_bt_del RADIOBUTTON GROUP rAPI,
+              p_bt_put RADIOBUTTON GROUP rAPI.
+  " Path
+  PARAMETERS: p_path TYPE STRING LOWER CASE DEFAULT '/',
+  " JSON Path
+              p_post_j TYPE char30000 LOWER CASE.
+
+SELECTION-SCREEN: END OF BLOCK BLOCK_01.

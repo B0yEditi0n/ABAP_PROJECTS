@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "jquery": "^3.7.0",
+    "nodemon": "^2.0.22"
+  },
+  "name": "api_conect",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "Caio_DHConsulting",
+  "license": "ISC",
+  "description": ""
+}

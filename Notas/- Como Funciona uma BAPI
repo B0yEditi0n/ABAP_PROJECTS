@@ -1,0 +1,10 @@
+- Como Funciona uma BAPI
+BAPI são semelhantes a funções no entanto seu uso é especifico para negócios como movimeto de mercadorias, criação de ordens entre outras ações de negócio.
+
+BAPIs podem ser encontradas da transação de mesmo nome BAPI, seu objetivo é subistituir batch input de transações que são inviáveis com telas dinamicas. assim a BAPI poderia subistituir essas entradas desopadronizdas em uma unica entrada.
+
+A chamda de uma BAPI gerará um registro de negócio portanto para efetuar a alteração e necessário usar "BAPI_TRANSACTION_COMMIT" para manter as atualiações, e caso elas precisem ser revertidas "BAPI_TRANSACTION_ROLLBACK".
+
+
+Criação do SALES ORDEM SAP using BAPI
+o nome da BAPI para criar odens de compras é "BAPI_SALESORDER_CREATEFROMDAT2", não se esqueça da a BAPI deve ter suas alterações confirmadas portanto é necessário chamar a BAPI "BAPI_TRANSACTION_COMMIT", que irá confirmar a alteração efetuada pela BAPI, e para desfazer a alteração basta apenas uma "BAPI_TRANSACTION_ROLLBACK"
