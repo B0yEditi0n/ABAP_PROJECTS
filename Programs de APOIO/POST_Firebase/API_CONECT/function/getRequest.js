@@ -1,59 +1,59 @@
 import e from "express";
 
 // Get resquest
-export class HttpApiConnect{
+export class HttpApiConnect {
     // Parametros
     parametrosIdNota = '';
 
-    defineParameters(Parametros){
-        try{
+    defineParameters(Parametros) {
+        try {
             this.parametrosIdNota = Parametros.id_nota;
             return 0;
-        }catch(erro){
+        } catch (erro) {
             this.parametrosIdNota = '';
             return 0;
         }
-        
+
     }
 
-    defineToken(User_Token, IM){
+    defineToken(User_Token, IM) {
         this.X_Auth_User_Token = User_Token;
-        this.X_Auth_IM         = IM;
+        this.X_Auth_IM = IM;
         return 0;
     }
 
-    async slowerFetch(url, options){
-        try{
+    async slowerFetch(url, options) {
+        try {
             const response = await fetch(url, options);
             // Se tudo certo
-            if(response.status == 200 && response.type == 'basic'){
+            if (response.status == 200 && response.type == 'basic') {
                 const jsonData = await response.json();
-                return jsonData;            
-            }else{
-                return response; 
+                return jsonData;
+            } else {
+                return response;
             }
 
-        } catch(erro){
+        } catch (erro) {
             console.log(erro);
 
-            if (erro = 'ConnectTimeoutError'){
-                return('Erro na Conexão com API')
+            if (erro = 'ConnectTimeoutError') {
+                return ('Erro na Conexão com API')
             }
-            else{
-                
-                return('Erro de Conexão com API principal')
+            else {
+
+                return ('Erro de Conexão com API principal')
             }
         }
 
     }
 
-    async getJson(http, extensionJson ){
-        var urlExtension  = '';
+    async getJson(http, extensionJson) {
+        var urlExtension = '';
 
-        if(extensionJson){
+        if (extensionJson) {
             urlExtension = '.json';
         }
-        
+
         console.log(`${http}${urlExtension}`);
         console.log('Aguardando Resposta da API...');
 
@@ -67,19 +67,19 @@ export class HttpApiConnect{
         var jsonData = await this.slowerFetch(`${http}${urlExtension}`, options);
 
         console.log('Resposta Recebida');
-        return ( jsonData );
+        return (jsonData);
     }
 
-    async postJson(http, extensionJson, jsonPOST){
+    async postJson(http, extensionJson, jsonPOST) {
         var urlExtension = '';
         const options = {
             method: "POST",
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(jsonPOST),
         };
-        if(extensionJson){
+        if (extensionJson) {
             urlExtension = '.json'
         }
 
@@ -87,55 +87,54 @@ export class HttpApiConnect{
 
         console.log('Envio para', http);
         console.log('Status do Envio:', response.status);
-        
+
         return response;
     }
 
-    async deleteJson(http, extensionJson){
+    async deleteJson(http, extensionJson) {
         var urlExtension = '';
         const options = {
             method: "DELETE",
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
             }
         };
-        if(extensionJson){
+        if (extensionJson) {
             urlExtension = '.json'
         }
-        
+
         const response = await this.slowerFetch(`${http}${urlExtension}`, options);
         console.log('Delete para', http);
         console.log('Status do Envio:', response);
 
-        if (response == null){ // Google não Retorna nada no DELETE
+        if (response == null) { // Google não Retorna nada no DELETE
             return 'Deletado';
-        }else{
+        } else {
             return response
         }
-        
-        
+
+
     }
 
-    async putJson(http, extensionJson, jsonPUT){
+    async putJson(http, extensionJson, jsonPUT) {
         var urlExtension = '';
-        const options = 
+        const options =
         {
             method: "PUT",
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(jsonPUT),
         };
-        if(extensionJson){
+        if (extensionJson) {
             urlExtension = '.json'
         }
-        
+
         const response = await this.slowerFetch(`${http}${urlExtension}`, options);
-        
+
         console.log('Alteração para', http);
         console.log('Status do Envio:', response.status);
         return response
 
     }
 }
-    

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.4/bluebird.min.js"></script> -->
+    <!-- <script src="./promisse.js"></script> -->
+    <script src="./html2pdf.bundle.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="Conteudo">
+        <h1>DH Consulting</h1>
+        <p>Desenvolvendo Tenologias</p>
+    </div>
+
+
+    <button id="pdfGenerate">gerar PDF</button>
+</body>
+
+<script>
+    var btnGenerate = document.getElementById("pdfGenerate");
+
+    btnGenerate.addEventListener("click", function () {
+        // o conteudo deve estar marcado content
+        var content = document.getElementById("Conteudo");
+
+        var option = {
+            margin: [10, 10, 10, 10],
+            filename: "pdfHtml.pdf",
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+        }
+
+        /* // Salva um arquivo PDF 
+        html2pdf().set(option).from(content).save();
+        */
+        // Gera um file B64
+        html2pdf().set(option).from(content).outputPdf().then(function (pdf) {
+            // This logs the right base64
+            // console.log();
+            var href_link = 'data:application/pdf;base64,' + btoa(pdf);
+
+            window.open(href_link, '_blank');
+        });
+
+        // Teste com data:application/pdf;base64,
+    });
+</script>
+
+</html>

@@ -1,3 +1,4 @@
  Correções da API
 - Fazer ela ser uma conexão Sincrona
 - Resolver Problemas de Conversão da PATH pata HASH
+- Formatar Datas de Tabelas
